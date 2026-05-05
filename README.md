@@ -32,7 +32,7 @@ A production-grade team task management application built with FastAPI, React, P
 
 ### Infrastructure
 - **Containerization**: Docker & Docker Compose
-- **Deployment**: Railway
+- **Deployment**: Render
 
 ## Local Setup
 
@@ -231,45 +231,19 @@ npm run dev
 - Only the project owner can delete the project
 - Project owner is automatically added as admin when creating a project
 
-## Railway Deployment
+Render Deployment
 
-### Prerequisites
-- Railway account (https://railway.app)
-- Git repository with this code
+Backend: https://taskmanager-backend-38mw.onrender.com
+Frontend: https://taskmanager-frontend-sv1x.onrender.com
 
-### Deployment Steps
+Deployment Steps
 
-1. Connect your GitHub repository to Railway
-
-2. Create a new project in Railway dashboard
-
-3. Add PostgreSQL plugin:
-   - Click "Add Service" → "Database" → PostgreSQL
-   - Railway will provide `DATABASE_URL` automatically
-
-4. Create backend service:
-   - Click "Add Service" → "GitHub Repo"
-   - Select this repository
-   - Set root directory to `backend/`
-
-5. Configure environment variables:
-   - Go to project settings
-   - Add the following variables:
-     - `SECRET_KEY`: Generate a secure random string
-     - `FRONTEND_URL`: Your deployed frontend URL
-     - `DATABASE_URL`: Auto-provided by PostgreSQL plugin
-
-6. Deploy frontend to Vercel/Netlify (recommended):
-   - Connect `frontend/` directory
-   - Set `VITE_API_URL` to your Railway backend URL
-   - Example: `https://your-project.railway.app`
-
-### Production Checklist
-- [ ] Change `SECRET_KEY` to a strong random value
-- [ ] Set `FRONTEND_URL` to your deployed frontend domain
-- [ ] Enable HTTPS (Railway does this by default)
-- [ ] Configure PostgreSQL backups in Railway dashboard
-- [ ] Monitor logs in Railway dashboard
+1. Create a Render account at render.com
+2. Create a new Postgres database service
+3. Create a new Web Service for backend, set Language to Docker, Root Directory to backend, Dockerfile Path to ./Dockerfile
+4. Set env vars: DATABASE_URL, SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES, FRONTEND_URL
+5. Create a Static Site for frontend, set Root Directory to frontend, Build Command to npm install && npm run build, Publish Directory to dist
+6. Set VITE_API_URL to the backend URL in frontend env vars
 
 ## Common Issues
 
@@ -336,8 +310,7 @@ alembic downgrade -1
 │   │   ├── context/          # React Context providers
 │   │   ├── api/              # API client configuration
 │   │   ├── hooks/            # Custom React hooks
-│   │   ├── types.ts          # TypeScript type definitions
-│   │   └── main.tsx          # React entry point
+│   │   └── main.jsx          # React entry point
 │   └── package.json          # Node dependencies
 ├── docker-compose.yml         # Local development setup
 ├── railway.toml              # Railway deployment config
