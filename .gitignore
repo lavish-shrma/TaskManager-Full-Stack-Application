@@ -1,0 +1,44 @@
+.env
+.env.local
+__pycache__/
+*.pyc
+node_modules/
+dist/
+build/
+.DS_Store
+.vscode/
+.idea/
+*.log
+*.sqlite
+*.db
+
+# Virtual environments
+venv/
+backend/venv/
+.venv/
+
+# Python cache and tooling
+.pytest_cache/
+.mypy_cache/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node
+frontend/node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Packaging
+*.egg-info/
+pip-wheel-metadata/
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# Environment files (keep example files)
+.env
+.env.local
